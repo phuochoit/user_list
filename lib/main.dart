@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:user_list/user_model.dart';
+import 'package:user_list/models/user/user_model.dart';
+// import 'package:user_list/user_model.dart';
 import 'package:user_list/user_network.dart';
 
 void main() {
@@ -34,25 +34,24 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print('futureUser>> ${futureUser}');
     return Scaffold(
       appBar: AppBar(
         title: Text('Page User'),
       ),
-      body: Center(
-        child: FutureBuilder<UserModel>(
-          future: futureUser,
-          builder: (context, snapshot) {
-            print('snapshot>> ${snapshot}');
-            if (snapshot.hasData) {
-              return Text('111');
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
-            }
-            // By default, show a loading spinner.
-            return CircularProgressIndicator();
-          },
-        ),
+      body: FutureBuilder<UserModel>(
+        future: futureUser,
+        builder: (context, snapshot) {
+          // print('snapshot >> ${snapshot.data.data}');
+          if (snapshot.hasData) {
+            print('----${snapshot.data.data}');
+            return Text('222');
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+
+          // By default, show a loading spinner.
+          return CircularProgressIndicator();
+        },
       ),
     );
   }

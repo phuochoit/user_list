@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:user_list/user_model.dart';
+import 'package:user_list/models/user/user_model.dart';
 
 Future<UserModel> fetchUser() async {
   final response = await http.get('http://172.16.0.2/data/users.json');
